@@ -224,7 +224,7 @@ compileCustomKernel() {
 }
 
 configureModuls() {
-for module in `find /lib/modules/3.15.5-hardened-r2/ -type f -iname '*.o' -or -iname '*.ko' | awk --field-separator "/" {'print $NF'} | sed s/.ko//`; do echo "modules_2_6=\"$module\"" >> /etc/conf.d/modules; done
+    find /lib/modules/3.15.5-hardened-r2/ -type f -iname '*.o' -or -iname '*.ko' | awk --field-separator "/" {'print $NF'} | sed s/.ko// | sed s/^/module_2.6=/ >> /etc/conf.d/modules
 }
 
 configureFstab() {
